@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="pt-sans.bold.ttf">
+            <string>PTSans-Bold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="RelatedNewsCollectionViewCell" id="gTV-IL-0wX" customClass="RelatedNewsCollectionViewCell" customModule="Mojo" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9bh-nj-ENW">
+                        <rect key="frame" x="0.0" y="0.0" width="150" height="110"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ksT-Pr-EZN">
+                        <rect key="frame" x="0.0" y="110" width="150" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="voo-Br-VBp"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="PTSans-Bold" family="PT Sans" pointSize="15"/>
+                        <color key="textColor" red="0.38823529410000002" green="0.70196078429999997" blue="0.21176470589999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="9bh-nj-ENW" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="P91-37-FgQ"/>
+                <constraint firstAttribute="trailing" secondItem="9bh-nj-ENW" secondAttribute="trailing" id="Ptd-nb-zyq"/>
+                <constraint firstAttribute="bottom" secondItem="ksT-Pr-EZN" secondAttribute="bottom" id="Wah-QQ-hLE"/>
+                <constraint firstItem="ksT-Pr-EZN" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="awN-Zd-o5x"/>
+                <constraint firstItem="ksT-Pr-EZN" firstAttribute="top" secondItem="9bh-nj-ENW" secondAttribute="bottom" id="gNW-1s-aG7"/>
+                <constraint firstItem="9bh-nj-ENW" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="u23-ft-BsP"/>
+                <constraint firstAttribute="trailing" secondItem="ksT-Pr-EZN" secondAttribute="trailing" id="xfe-NJ-hlz"/>
+            </constraints>
+            <size key="customSize" width="242" height="205"/>
+            <connections>
+                <outlet property="imgVw" destination="9bh-nj-ENW" id="xD5-Gl-eu7"/>
+                <outlet property="lblName" destination="ksT-Pr-EZN" id="Xus-KD-6Ll"/>
+            </connections>
+            <point key="canvasLocation" x="-34" y="15"/>
+        </collectionViewCell>
+    </objects>
+</document>
