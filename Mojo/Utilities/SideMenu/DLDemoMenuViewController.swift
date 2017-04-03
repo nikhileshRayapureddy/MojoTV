@@ -14,7 +14,7 @@ class DLDemoMenuViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var lblBalance: UILabel!
     // data
-    var arrConstantLabels = ["About Us","Terms Conditions","Feedback"]
+    var arrConstantLabels = ["About Us","Terms & Conditions","Feedback"]
 
     override func viewDidLoad() {
         super.viewDidLoad()

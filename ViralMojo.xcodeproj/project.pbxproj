@@ -21,6 +21,7 @@
 		A76DBD571E8158D500F8B0F3 /* TandCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76DBD561E8158D500F8B0F3 /* TandCViewController.swift */; };
 		A76DBD5A1E816F0900F8B0F3 /* aboutus.html in Resources */ = {isa = PBXBuildFile; fileRef = A76DBD581E816F0900F8B0F3 /* aboutus.html */; };
 		A76DBD5B1E816F0900F8B0F3 /* terms_and_conditions.html in Resources */ = {isa = PBXBuildFile; fileRef = A76DBD591E816F0900F8B0F3 /* terms_and_conditions.html */; };
+		A76DBD5D1E81732500F8B0F3 /* viral_mojo_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = A76DBD5C1E81732500F8B0F3 /* viral_mojo_logo.png */; };
 		A7910BEC1E5DEF08008A5CBC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A7910BEB1E5DEF08008A5CBC /* Assets.xcassets */; };
 		A7A33E6E1E5874DA000AFDC1 /* CategoriesBO.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A33E6D1E5874DA000AFDC1 /* CategoriesBO.swift */; };
 		A7A33E701E5876BB000AFDC1 /* NewsBO.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A33E6F1E5876BB000AFDC1 /* NewsBO.swift */; };
@@ -109,12 +110,13 @@
 		A76DBD561E8158D500F8B0F3 /* TandCViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TandCViewController.swift; sourceTree = "<group>"; };
 		A76DBD581E816F0900F8B0F3 /* aboutus.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = aboutus.html; sourceTree = "<group>"; };
 		A76DBD591E816F0900F8B0F3 /* terms_and_conditions.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = terms_and_conditions.html; sourceTree = "<group>"; };
+		A76DBD5C1E81732500F8B0F3 /* viral_mojo_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = viral_mojo_logo.png; sourceTree = "<group>"; };
 		A7759A222DB793BFBA0FB967 /* Pods_Mojo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mojo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7910BEB1E5DEF08008A5CBC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A798A7901E7AE10800284D8A /* Mojo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Mojo.entitlements; sourceTree = "<group>"; };
 		A7A33E6D1E5874DA000AFDC1 /* CategoriesBO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesBO.swift; sourceTree = "<group>"; };
 		A7A33E6F1E5876BB000AFDC1 /* NewsBO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsBO.swift; sourceTree = "<group>"; };
-		A7A3ABB31E5810C400F05EB8 /* Mojo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = Mojo.app; path = ViralMojo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A7A3ABB31E5810C400F05EB8 /* ViralMojo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ViralMojo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7A3ABBB1E5810C400F05EB8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A7A3ABBE1E5810C400F05EB8 /* Mojo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Mojo.xcdatamodel; sourceTree = "<group>"; };
 		A7A3ABC31E5810C400F05EB8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -226,7 +228,7 @@
 		A7A3ABB41E5810C400F05EB8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A7A3ABB31E5810C400F05EB8 /* Mojo.app */,
+				A7A3ABB31E5810C400F05EB8 /* ViralMojo.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -361,6 +363,7 @@
 			isa = PBXGroup;
 			children = (
 				A76DBD581E816F0900F8B0F3 /* aboutus.html */,
+				A76DBD5C1E81732500F8B0F3 /* viral_mojo_logo.png */,
 				A76DBD591E816F0900F8B0F3 /* terms_and_conditions.html */,
 				A74035F31E5E03F4005CCB83 /* Font */,
 				A7EADD341E5965F40058C2AC /* SideMenu */,
@@ -515,7 +518,7 @@
 			);
 			name = ViralMojo;
 			productName = Mojo;
-			productReference = A7A3ABB31E5810C400F05EB8 /* Mojo.app */;
+			productReference = A7A3ABB31E5810C400F05EB8 /* ViralMojo.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -578,6 +581,7 @@
 				A74035FC1E5E03F4005CCB83 /* pt-sans.bold-italic.ttf in Resources */,
 				A7A3ABC41E5810C400F05EB8 /* LaunchScreen.storyboard in Resources */,
 				A74036011E5E03F4005CCB83 /* pt-sans.narrow-bold.ttf in Resources */,
+				A76DBD5D1E81732500F8B0F3 /* viral_mojo_logo.png in Resources */,
 				A76DBD5B1E816F0900F8B0F3 /* terms_and_conditions.html in Resources */,
 				A74035FF1E5E03F4005CCB83 /* pt-sans.caption.ttf in Resources */,
 				A7910BEC1E5DEF08008A5CBC /* Assets.xcassets in Resources */,
@@ -828,16 +832,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Mojo/Mojo.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: nookesh sirasapalli (UESN2SE9H4)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: nookesh sirasapalli (UESN2SE9H4)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: nookesh sirasapalli (6U259K6B7A)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: nookesh sirasapalli (6U259K6B7A)";
 				DEVELOPMENT_TEAM = UESN2SE9H4;
 				INFOPLIST_FILE = Mojo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.viral.Mojo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "29389357-5708-4cff-a075-6f90fc599741";
-				PROVISIONING_PROFILE_SPECIFIER = Mojo_Apns_Dist;
+				PROVISIONING_PROFILE = "ed613408-6f2e-44f7-8103-0736a4bc4eba";
+				PROVISIONING_PROFILE_SPECIFIER = Mojo_dev;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -848,16 +852,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Mojo/Mojo.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: nookesh sirasapalli (UESN2SE9H4)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: nookesh sirasapalli (UESN2SE9H4)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: nookesh sirasapalli (6U259K6B7A)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: nookesh sirasapalli (6U259K6B7A)";
 				DEVELOPMENT_TEAM = UESN2SE9H4;
 				INFOPLIST_FILE = Mojo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.viral.Mojo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "29389357-5708-4cff-a075-6f90fc599741";
-				PROVISIONING_PROFILE_SPECIFIER = Mojo_Apns_Dist;
+				PROVISIONING_PROFILE = "ed613408-6f2e-44f7-8103-0736a4bc4eba";
+				PROVISIONING_PROFILE_SPECIFIER = Mojo_dev;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
