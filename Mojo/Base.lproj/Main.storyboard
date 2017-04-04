@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="atV-T1-APk">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="atV-T1-APk">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -62,56 +62,68 @@
                                         <rect key="frame" x="0.0" y="170" width="375" height="50"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WUf-t0-xTF">
-                                                <rect key="frame" x="75" y="0.0" width="224" height="50"/>
+                                                <rect key="frame" x="47" y="0.0" width="280" height="50"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mbr-Jh-bWM">
-                                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                        <rect key="frame" x="1" y="0.0" width="54" height="50"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                        <state key="normal" image="trending">
-                                                            <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                        <fontDescription key="fontDescription" name="PTSans-Bold" family="PT Sans" pointSize="11"/>
+                                                        <inset key="titleEdgeInsets" minX="-25" minY="31" maxX="0.0" maxY="0.0"/>
+                                                        <inset key="imageEdgeInsets" minX="11" minY="-12" maxX="0.0" maxY="0.0"/>
+                                                        <state key="normal" title="TRENDING" image="trending">
+                                                            <color key="titleColor" red="0.0" green="0.44469866070000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </state>
                                                         <connections>
                                                             <action selector="btnTrendingClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="UFa-45-QWQ"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dyi-eX-qH5">
-                                                        <rect key="frame" x="58" y="0.0" width="50" height="50"/>
+                                                        <rect key="frame" x="65" y="0.0" width="72" height="50"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                        <state key="normal" image="editrs_pic">
-                                                            <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                        <fontDescription key="fontDescription" name="PTSans-Bold" family="PT Sans" pointSize="11"/>
+                                                        <inset key="titleEdgeInsets" minX="-25" minY="31" maxX="0.0" maxY="0.0"/>
+                                                        <inset key="imageEdgeInsets" minX="21" minY="-12" maxX="0.0" maxY="0.0"/>
+                                                        <state key="normal" title="EDITOR'S PICK" image="editrs_pic">
+                                                            <color key="titleColor" red="0.0" green="0.44469866070000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </state>
                                                         <connections>
                                                             <action selector="btnEditorClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Why-AJ-ghf"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L5P-aa-v9E">
-                                                        <rect key="frame" x="116" y="0.0" width="50" height="50"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                        <state key="normal" image="top_10">
-                                                            <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                        </state>
-                                                        <connections>
-                                                            <action selector="btnTop10Clicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="DXx-bx-87f"/>
-                                                        </connections>
-                                                    </button>
                                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gtX-MV-IVm">
-                                                        <rect key="frame" x="174" y="0.0" width="50" height="50"/>
+                                                        <rect key="frame" x="203" y="0.0" width="71" height="50"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                        <state key="normal" image="weird_world">
-                                                            <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                        <fontDescription key="fontDescription" name="PTSans-Bold" family="PT Sans" pointSize="11"/>
+                                                        <inset key="titleEdgeInsets" minX="-26" minY="30" maxX="0.0" maxY="0.0"/>
+                                                        <inset key="imageEdgeInsets" minX="19" minY="-12" maxX="0.0" maxY="0.0"/>
+                                                        <state key="normal" title="WEIRD WORLD" image="weird_world">
+                                                            <color key="titleColor" red="0.0" green="0.44469866070000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </state>
                                                         <connections>
                                                             <action selector="btnWeirdClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GrR-u4-VJl"/>
                                                         </connections>
                                                     </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L5P-aa-v9E">
+                                                        <rect key="frame" x="145" y="0.0" width="50" height="50"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                        <fontDescription key="fontDescription" name="PTSans-Bold" family="PT Sans" pointSize="11"/>
+                                                        <inset key="titleEdgeInsets" minX="-25" minY="31" maxX="0.0" maxY="0.0"/>
+                                                        <inset key="imageEdgeInsets" minX="9" minY="-12" maxX="0.0" maxY="0.0"/>
+                                                        <state key="normal" title="TOP 10" image="top_10">
+                                                            <color key="titleColor" red="0.0" green="0.44469866070000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="btnTop10Clicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="DXx-bx-87f"/>
+                                                        </connections>
+                                                    </button>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="224" id="B5w-eV-7oU"/>
+                                                    <constraint firstAttribute="width" constant="280" id="B5w-eV-7oU"/>
                                                     <constraint firstAttribute="height" constant="50" id="ZPo-Ge-XJj"/>
                                                 </constraints>
                                             </view>
@@ -223,7 +235,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3823" y="492"/>
+            <point key="canvasLocation" x="-3823.1999999999998" y="491.60419790104953"/>
         </scene>
         <!--News View Controller-->
         <scene sceneID="1tc-xh-WLt">
@@ -390,7 +402,7 @@
                                         <rect key="frame" x="0.0" y="1" width="375" height="120"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wgO-mV-cs9" id="0lA-3w-Rdc">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="119"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="119.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8Yq-Ou-gol">
@@ -1098,13 +1110,13 @@
         <image name="Logo_SideMenu" width="211" height="80"/>
         <image name="arrow_SideMenu" width="24" height="24"/>
         <image name="back" width="32" height="32"/>
-        <image name="editrs_pic" width="32" height="32"/>
+        <image name="editrs_pic" width="25" height="25"/>
         <image name="like_icon" width="32" height="32"/>
         <image name="share_icon" width="32" height="32"/>
         <image name="star_sel" width="35" height="35"/>
         <image name="star_unsel" width="35" height="35"/>
-        <image name="top_10" width="32" height="32"/>
-        <image name="trending" width="32" height="32"/>
-        <image name="weird_world" width="32" height="32"/>
+        <image name="top_10" width="25" height="25"/>
+        <image name="trending" width="25" height="25"/>
+        <image name="weird_world" width="25" height="25"/>
     </resources>
 </document>
