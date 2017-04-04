@@ -27,7 +27,8 @@ enum ParsingConstant : Int
     getSearchresults,
     getAllSlogans,
     internetLoss,
-    setLike
+    setLike,
+    checkLike
 }
 
 

@@ -628,6 +628,7 @@
                                             <constraint firstAttribute="width" constant="30" id="h4d-1r-52p"/>
                                         </constraints>
                                         <state key="normal" image="like_icon"/>
+                                        <state key="selected" image="like_sel"/>
                                         <connections>
                                             <action selector="btnlikeClicked:" destination="Nu7-bn-5j4" eventType="touchUpInside" id="9kN-yW-TEx"/>
                                         </connections>
@@ -691,6 +692,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="btnLike" destination="RAo-yZ-mf4" id="hTz-lk-bGF"/>
                         <outlet property="clVwRelatedNews" destination="esY-36-cqm" id="2Ca-6x-mj7"/>
                         <outlet property="lblLikes" destination="fEu-sf-1f9" id="GdW-9D-fA1"/>
                         <outlet property="lblNewName" destination="ur2-ho-ulW" id="0P4-PT-cXB"/>
@@ -1112,6 +1114,7 @@
         <image name="back" width="32" height="32"/>
         <image name="editrs_pic" width="25" height="25"/>
         <image name="like_icon" width="32" height="32"/>
+        <image name="like_sel" width="32" height="32"/>
         <image name="share_icon" width="32" height="32"/>
         <image name="star_sel" width="35" height="35"/>
         <image name="star_unsel" width="35" height="35"/>

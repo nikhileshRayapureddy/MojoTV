@@ -161,6 +161,136 @@ class BusinessLayer: BaseBL {
         }
         
     }
+    func setLikeFor(newsId : String)
+    {
+        let obj : HttpRequest = HttpRequest()
+        obj.tag = NSInteger(ParsingConstant.setLike.rawValue)
+        obj.MethodNamee = "POST"
+        obj._serviceURL = developer_API + "setLikes.php"
+        let deviceID = UIDevice.current.identifierForVendor!.uuidString
+        obj.ServiceBody = "newsId=" + newsId + "&mobileIMEI=" + deviceID + "&isLike=1"
+        obj.params = [:]
+        
+        obj.doGetSOAPResponse {(success : Bool) -> Void in
+            if !success
+            {
+                self.callBack?.parsingError(SERVER_ERROR, withTag: obj.tag)
+            }
+            else
+            {
+                if let isSuccess  = obj.parsedDataDict["Success"] as? NSNumber
+                {
+                    if Bool(isSuccess) == true
+                    {
+                        if let arrData  = obj.parsedDataDict["news"] as? [[String:AnyObject]]
+                        {
+                            var arrNews = [NewsBO]()
+                            if arrData.count > 0
+                            {
+                                for dictData in arrData
+                                {
+                                    let content = NewsBO()
+                                    if let News_ID = dictData["News_ID"] as? String
+                                    {
+                                        content.News_ID = News_ID
+                                    }
+                                    if let Category = dictData["Category"] as? String
+                                    {
+                                        content.Category = Category
+                                    }
+                                    if let Category_ID = dictData["Category_ID"] as? String
+                                    {
+                                        content.Category_ID = Category_ID
+                                    }
+                                    if let News_Subject = dictData["News_Subject"] as? String
+                                    {
+                                        content.News_Subject = News_Subject
+                                    }
+                                    if let News_VideoLink = dictData["News_VideoLink"] as? String
+                                    {
+                                        content.News_VideoLink = News_VideoLink
+                                    }
+                                    if let News_Likes = dictData["News_Likes"] as? String
+                                    {
+                                        content.News_Likes = News_Likes
+                                    }
+                                    if let News_Dislikes = dictData["News_Dislikes"] as? String
+                                    {
+                                        content.News_Dislikes = News_Dislikes
+                                    }
+                                    if let IsBreakingNews = dictData["IsBreakingNews"] as? String
+                                    {
+                                        content.IsBreakingNews = IsBreakingNews
+                                    }
+                                    if let News_Date = dictData["News_Date"] as? String
+                                    {
+                                        content.News_Date = News_Date
+                                    }
+                                    arrNews.append(content)
+                                }
+                            }
+                            self.callBack?.parsingFinished(arrNews as AnyObject?, withTag: obj.tag)
+                        }
+                        else
+                        {
+                            self.callBack?.parsingFinished([NewsBO]() as AnyObject?, withTag: obj.tag)
+                            
+                        }
+                        
+                    }
+                    else
+                    {
+                        self.callBack?.parsingFinished([NewsBO]() as AnyObject?, withTag: obj.tag)
+                    }
+                }
+                else
+                {
+                    self.callBack.parsingError(SERVER_ERROR, withTag: obj.tag)
+                }
+                
+            }
+        }
+        
+    }
+
+    func checkLikeFor(newsID : String)
+    {
+        let obj : HttpRequest = HttpRequest()
+        obj.tag = NSInteger(ParsingConstant.checkLike.rawValue)
+        obj.MethodNamee = "POST"
+        obj._serviceURL = developer_API + "checkLike.php"
+        let deviceID = UIDevice.current.identifierForVendor!.uuidString
+        obj.ServiceBody = "newsId=" + newsID + "&mobileIMEI=" + deviceID
+        obj.params = [:]
+        
+        obj.doGetSOAPResponse {(success : Bool) -> Void in
+            if !success
+            {
+                self.callBack?.parsingError(SERVER_ERROR, withTag: obj.tag)
+            }
+            else
+            {
+                if let isSuccess  = obj.parsedDataDict["Success"] as? NSNumber
+                {
+                    if Bool(isSuccess) == true
+                    {
+                        self.callBack?.parsingFinished("Success" as AnyObject?, withTag: obj.tag)
+ 
+                    }
+                    else
+                    {
+                        self.callBack?.parsingError(SERVER_ERROR, withTag: obj.tag)
+
+                    }
+                }
+                else
+                {
+                    self.callBack?.parsingError(SERVER_ERROR, withTag: obj.tag)
+                }
+            }
+        }
+        
+    }
     func getNewsByCategoryWith(ID : String)
     {
         let obj : HttpRequest = HttpRequest()
@@ -605,97 +735,6 @@ class BusinessLayer: BaseBL {
                                 }
                             }
                             self.callBack?.parsingFinished(arrSlogans as AnyObject?, withTag: obj.tag)
-                        }
-                        else
-                        {
-                            self.callBack?.parsingFinished([NewsBO]() as AnyObject?, withTag: obj.tag)
-                            
-                        }
-                        
-                    }
-                    else
-                    {
-                        self.callBack?.parsingFinished([NewsBO]() as AnyObject?, withTag: obj.tag)
-                    }
-                }
-                else
-                {
-                    self.callBack.parsingError(SERVER_ERROR, withTag: obj.tag)
-                }
-                
-            }
-        }
-        
-    }
-    func setLikeFor(newsId : String)
-    {
-        let obj : HttpRequest = HttpRequest()
-        obj.tag = NSInteger(ParsingConstant.setLike.rawValue)
-        obj.MethodNamee = "POST"
-        obj._serviceURL = developer_API + "setLikes.php"
-        let deviceID = UIDevice.current.identifierForVendor!.uuidString
-        obj.ServiceBody = "newsId=" + newsId + "&mobileIMEI=" + deviceID + "&isLike=" + "1"
-        obj.params = [:]
-        
-        obj.doGetSOAPResponse {(success : Bool) -> Void in
-            if !success
-            {
-                self.callBack?.parsingError(SERVER_ERROR, withTag: obj.tag)
-            }
-            else
-            {
-                if let isSuccess  = obj.parsedDataDict["success"] as? NSNumber
-                {
-                    if Bool(isSuccess) == true
-                    {
-                        if let arrData  = obj.parsedDataDict["news"] as? [[String:AnyObject]]
-                        {
-                            var arrNews = [NewsBO]()
-                            if arrData.count > 0
-                            {
-                                for dictData in arrData
-                                {
-                                    let content = NewsBO()
-                                    if let News_ID = dictData["News_ID"] as? String
-                                    {
-                                        content.News_ID = News_ID
-                                    }
-                                    if let Category = dictData["Category"] as? String
-                                    {
-                                        content.Category = Category
-                                    }
-                                    if let Category_ID = dictData["Category_ID"] as? String
-                                    {
-                                        content.Category_ID = Category_ID
-                                    }
-                                    if let News_Subject = dictData["News_Subject"] as? String
-                                    {
-                                        content.News_Subject = News_Subject
-                                    }
-                                    if let News_VideoLink = dictData["News_VideoLink"] as? String
-                                    {
-                                        content.News_VideoLink = News_VideoLink
-                                    }
-                                    if let News_Likes = dictData["News_Likes"] as? String
-                                    {
-                                        content.News_Likes = News_Likes
-                                    }
-                                    if let News_Dislikes = dictData["News_Dislikes"] as? String
-                                    {
-                                        content.News_Dislikes = News_Dislikes
-                                    }
-                                    if let IsBreakingNews = dictData["IsBreakingNews"] as? String
-                                    {
-                                        content.IsBreakingNews = IsBreakingNews
-                                    }
-                                    if let News_Date = dictData["News_Date"] as? String
-                                    {
-                                        content.News_Date = News_Date
-                                    }
-                                    arrNews.append(content)
-                                }
-                            }
-                            self.callBack?.parsingFinished(arrNews as AnyObject?, withTag: obj.tag)
                         }
                         else
                         {

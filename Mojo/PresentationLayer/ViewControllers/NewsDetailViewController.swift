@@ -15,6 +15,7 @@ class NewsDetailViewController: BaseViewController,UICollectionViewDelegate,UICo
     var newsId = ""
     var newsBO = NewsBO()
     
+    @IBOutlet weak var btnLike: UIButton!
     @IBOutlet weak var lblLikes: UILabel!
     @IBOutlet weak var lblNewName: UILabel!
     override func viewDidLoad() {
@@ -80,16 +81,31 @@ class NewsDetailViewController: BaseViewController,UICollectionViewDelegate,UICo
         BL.callBack = self
         BL.getNewsWith(ID: newsId)
     }
+    func checkLike()
+    {
+        let BL = BusinessLayer()
+        BL.callBack = self
+        BL.checkLikeFor(newsID:newsId)
+    }
 
     func parsingError(_ error: String?, withTag tag: NSInteger) {
         app_delegate.removeloder()
         if tag == ParsingConstant.setLike.rawValue
         {
-         print("Failed to like the video")
+            print("Failed to like the video")
+            DispatchQueue.main.async {
+                self.btnLike.isSelected = false
+            }
         }
+        else if tag == ParsingConstant.checkLike.rawValue
+        {
+            DispatchQueue.main.async {
+                self.btnLike.isSelected = false
+            }
+        }
+
     }
     func parsingFinished(_ object: AnyObject?, withTag tag: NSInteger) {
-        app_delegate.removeloder()
         if tag == ParsingConstant.getNews.rawValue
         {
             DispatchQueue.main.async {
@@ -104,13 +120,35 @@ class NewsDetailViewController: BaseViewController,UICollectionViewDelegate,UICo
                 self.clVwRelatedNews.reloadData()
                 self.lblNewName.text = self.newsBO.News_Subject
                 self.lblLikes.text = self.newsBO.News_Likes
+                self.checkLike()
             }
         }
         else if tag == ParsingConstant.setLike.rawValue
         {
-            
+            app_delegate.removeloder()
+            DispatchQueue.main.async {
+                self.btnLike.isSelected = true
+                let count = Int(self.lblLikes.text!)
+                self.lblLikes.text = "\(count! + 1)"
+
+            }
         }
-        
+        else if tag == ParsingConstant.checkLike.rawValue
+        {
+            app_delegate.removeloder()
+
+            DispatchQueue.main.async {
+                self.btnLike.isSelected = true
+                let count = Int(self.lblLikes.text!)
+                self.lblLikes.text = "\(count! + 1)"
+
+            }
+        }
+        else
+        {
+            app_delegate.removeloder()
+        }
+
     }
     func playerViewDidBecomeReady(_ playerView: YTPlayerView)
     {
@@ -124,9 +162,10 @@ class NewsDetailViewController: BaseViewController,UICollectionViewDelegate,UICo
     }
     
     @IBAction func btnlikeClicked(_ sender: UIButton) {
-        let count = Int(lblLikes.text!)
-        lblLikes.text = "\(count! + 1)"
-        self.setLikes()
+        if sender.isSelected == false
+        {
+            self.setLikes()
+        }
     }
     func setLikes()
     {
