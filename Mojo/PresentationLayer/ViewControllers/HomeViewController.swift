@@ -10,7 +10,7 @@ import UIKit
 let strBannerImage = ""
 var arrAllCategories = [CategoriesBO]()
 
-let COLOR_GREEN = UIColor(red: 99.0/255.0, green: 179.0/255.0, blue: 54.0/255.0, alpha: 1)
+let COLOR_GREEN = UIColor(red: 0.0/255.0, green: 136.0/255.0, blue: 225.0/255.0, alpha: 1)
 class HomeViewController: BaseViewController,UITableViewDelegate,UITableViewDataSource,ParserDelegate,UIScrollViewDelegate {
     let TagBannerDetail = 1000
     @IBOutlet weak var scrlVwBanner: UIScrollView!

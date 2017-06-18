@@ -7,7 +7,7 @@
 //
 
 import UIKit
-let Color_NavBarTint : UIColor =  UIColor(red: 158.0/255.0, green: 157.0/255.0, blue: 157.0/255.0, alpha: 1)
+let Color_NavBarTint : UIColor =  UIColor(red: 0.0/255.0, green: 136.0/255.0, blue: 225.0/255.0, alpha: 1)
 let TAG_BOTTOM_BAR:Int = 1800
 
 class BaseViewController: UIViewController {
@@ -30,14 +30,15 @@ class BaseViewController: UIViewController {
         UINavigationBar.appearance().barTintColor = UIColor.black
         let negativeSpacer = UIBarButtonItem.init(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
         negativeSpacer.width = -15
+        var leftBarButtonItem: UIBarButtonItem!
+        var leftBarButtonItem1: UIBarButtonItem!
         if IsBack
         {
             let btnBack = UIButton(type: UIButtonType.custom)
             btnBack.frame = CGRect(x: -2, y: 0  , width: 44 , height: 44)
             btnBack.setImage(UIImage(named: "back"), for: UIControlState.normal)
             btnBack.addTarget(self, action: #selector(self.btnBackClicked(sender:)), for: UIControlEvents.touchUpInside)
-            let leftBarButtonItem: UIBarButtonItem = UIBarButtonItem(customView: btnBack)
-            self.navigationItem.leftBarButtonItems = [negativeSpacer, leftBarButtonItem]
+            leftBarButtonItem = UIBarButtonItem(customView: btnBack)
         }
         else
         {
@@ -45,35 +46,34 @@ class BaseViewController: UIViewController {
             menuButton.frame = CGRect(x: -2, y: 0  , width: 44 , height: 44)
             menuButton.setImage(UIImage(named: "menu"), for: UIControlState.normal)
             menuButton.addTarget(self, action: #selector(self.menuClicked(sender:)), for: UIControlEvents.touchUpInside)
-            let leftBarButtonItem: UIBarButtonItem = UIBarButtonItem(customView: menuButton)
-            self.navigationItem.leftBarButtonItems = [negativeSpacer, leftBarButtonItem]
+            leftBarButtonItem = UIBarButtonItem(customView: menuButton)
             
         }
         if isLogo
         {
             let logoImgView = UIButton(type: UIButtonType.custom)
-            logoImgView.frame =  CGRect(x: 0, y: 0, width: 100, height: 35)
+            logoImgView.frame =  CGRect(x: 0, y: 0, width: 40, height: 40)
             logoImgView.setImage(UIImage(named:"Logo_NavBar"), for: .normal)
             logoImgView.setImage(UIImage(named:"Logo_NavBar"), for: .selected)
             logoImgView.setImage(UIImage(named:"Logo_NavBar"), for: .highlighted)
             logoImgView.titleLabel?.font = UIFont (name: "pt-sans.bold", size: 20)
-            
-            self.navigationItem.titleView = logoImgView
+            leftBarButtonItem1 = UIBarButtonItem(customView: logoImgView)
 
         }
         else
         {
             let logoImgView = UIButton(type: UIButtonType.custom)
-            logoImgView.frame =  CGRect(x: 0, y: 0, width: 100, height: 35)
+            logoImgView.frame =  CGRect(x: 0, y: 0, width: 300, height: 40)
             logoImgView.setTitle(strTitle, for: .normal)
             logoImgView.setTitleColor(UIColor.white, for: .normal)
             logoImgView.titleLabel?.font = UIFont (name: "pt-sans.bold", size: 20)
-            
-            self.navigationItem.titleView = logoImgView
+            logoImgView.contentHorizontalAlignment = .left
+            leftBarButtonItem1 = UIBarButtonItem(customView: logoImgView)
 
         }
         
-        
+        self.navigationItem.leftBarButtonItems = [negativeSpacer, leftBarButtonItem, leftBarButtonItem1]
+
         
     }
     func designNavBarForHome()
@@ -84,21 +84,24 @@ class BaseViewController: UIViewController {
         UINavigationBar.appearance().barTintColor = UIColor.black
         let negativeSpacer = UIBarButtonItem.init(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
         negativeSpacer.width = -15
-        let menuButton = UIButton(type: UIButtonType.custom)
-        menuButton.frame = CGRect(x: -2, y: 0  , width: 44 , height: 44)
-        menuButton.setImage(UIImage(named: "menu"), for: UIControlState.normal)
-        menuButton.addTarget(self, action: #selector(self.menuClicked(sender:)), for: UIControlEvents.touchUpInside)
-        let leftBarButtonItem: UIBarButtonItem = UIBarButtonItem(customView: menuButton)
-        self.navigationItem.leftBarButtonItems = [negativeSpacer, leftBarButtonItem]
         let logoImgView = UIButton(type: UIButtonType.custom)
-        logoImgView.frame =  CGRect(x: 0, y: 0, width: 100, height: 35)
+        logoImgView.frame =  CGRect(x: 0, y: 0, width: 40, height: 40)
         logoImgView.setImage(UIImage(named:"Logo_NavBar"), for: .normal)
         logoImgView.setImage(UIImage(named:"Logo_NavBar"), for: .selected)
         logoImgView.setImage(UIImage(named:"Logo_NavBar"), for: .highlighted)
         logoImgView.contentMode = .left
         logoImgView.titleLabel?.font = UIFont (name: "pt-sans.bold", size: 20)
+
         
-        self.navigationItem.titleView = logoImgView
+        let menuButton = UIButton(type: UIButtonType.custom)
+        menuButton.frame = CGRect(x: -2, y: 0  , width: 44 , height: 44)
+        menuButton.setImage(UIImage(named: "menu"), for: UIControlState.normal)
+        menuButton.addTarget(self, action: #selector(self.menuClicked(sender:)), for: UIControlEvents.touchUpInside)
+        let leftBarButtonItem: UIBarButtonItem = UIBarButtonItem(customView: menuButton)
+        let leftBarButtonItem1: UIBarButtonItem = UIBarButtonItem(customView: logoImgView)
+        self.navigationItem.leftBarButtonItems = [negativeSpacer, leftBarButtonItem,leftBarButtonItem1]
+        
+//        self.navigationItem.titleView = logoImgView
         
         let btnsearch = UIButton(type: UIButtonType.custom)
         btnsearch.frame = CGRect(x: -2, y: 0  , width: 44 , height: 44)

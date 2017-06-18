@@ -21,19 +21,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="Rsu-j1-Cqt">
-                                <rect key="frame" x="16" y="269" width="343" height="128"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Splash_Logo" translatesAutoresizingMaskIntoConstraints="NO" id="Rsu-j1-Cqt">
+                                <rect key="frame" x="122.5" y="268" width="130" height="130"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="343" id="GAv-2x-J0r"/>
-                                    <constraint firstAttribute="height" constant="128" id="M2J-Vh-LsK"/>
+                                    <constraint firstAttribute="width" constant="130" id="BYl-vE-H1N"/>
+                                    <constraint firstAttribute="height" constant="130" id="Nfp-rn-rJV"/>
                                 </constraints>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="0.61960784310000006" green="0.61568627450000002" blue="0.61568627450000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.16078431372549018" green="0.5490196078431373" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="Rsu-j1-Cqt" firstAttribute="centerY" secondItem="tR6-vg-9hD" secondAttribute="centerY" id="4J6-8V-8wz"/>
-                            <constraint firstItem="Rsu-j1-Cqt" firstAttribute="centerX" secondItem="tR6-vg-9hD" secondAttribute="centerX" id="uEv-Tk-xJO"/>
+                            <constraint firstItem="Rsu-j1-Cqt" firstAttribute="centerX" secondItem="tR6-vg-9hD" secondAttribute="centerX" id="U7j-ck-ueY"/>
+                            <constraint firstItem="Rsu-j1-Cqt" firstAttribute="centerY" secondItem="tR6-vg-9hD" secondAttribute="centerY" id="xCY-yQ-Pgy"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -43,6 +43,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Logo" width="342" height="128"/>
+        <image name="Splash_Logo" width="130" height="130"/>
     </resources>
 </document>

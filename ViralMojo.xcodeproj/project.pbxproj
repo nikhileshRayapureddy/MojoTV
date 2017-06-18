@@ -27,7 +27,6 @@
 		A7A33E701E5876BB000AFDC1 /* NewsBO.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A33E6F1E5876BB000AFDC1 /* NewsBO.swift */; };
 		A7A3ABBC1E5810C400F05EB8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7A3ABBA1E5810C400F05EB8 /* Main.storyboard */; };
 		A7A3ABBF1E5810C400F05EB8 /* Mojo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A7A3ABBD1E5810C400F05EB8 /* Mojo.xcdatamodeld */; };
-		A7A3ABC41E5810C400F05EB8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7A3ABC21E5810C400F05EB8 /* LaunchScreen.storyboard */; };
 		A7A3ABD91E58113200F05EB8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A3ABCC1E58113200F05EB8 /* AppDelegate.swift */; };
 		A7A3ABDA1E58113200F05EB8 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A3ABD71E58113200F05EB8 /* HomeViewController.swift */; };
 		A7A3ABDC1E5816E900F05EB8 /* HomeCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A3ABDB1E5816E900F05EB8 /* HomeCustomCell.swift */; };
@@ -119,7 +118,6 @@
 		A7A3ABB31E5810C400F05EB8 /* ViralMojo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ViralMojo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7A3ABBB1E5810C400F05EB8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A7A3ABBE1E5810C400F05EB8 /* Mojo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Mojo.xcdatamodel; sourceTree = "<group>"; };
-		A7A3ABC31E5810C400F05EB8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A7A3ABC51E5810C400F05EB8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A7A3ABCC1E58113200F05EB8 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A7A3ABD71E58113200F05EB8 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -244,7 +242,6 @@
 				A7A3ABD31E58113200F05EB8 /* PresentationLayer */,
 				A7A3ABD81E58113200F05EB8 /* Utilities */,
 				A7A3ABBA1E5810C400F05EB8 /* Main.storyboard */,
-				A7A3ABC21E5810C400F05EB8 /* LaunchScreen.storyboard */,
 				A7A3ABC51E5810C400F05EB8 /* Info.plist */,
 				A7910BEB1E5DEF08008A5CBC /* Assets.xcassets */,
 				A7A3ABBD1E5810C400F05EB8 /* Mojo.xcdatamodeld */,
@@ -579,7 +576,6 @@
 				A74036021E5E03F4005CCB83 /* pt-sans.narrow.ttf in Resources */,
 				A74035FD1E5E03F4005CCB83 /* pt-sans.bold.ttf in Resources */,
 				A74035FC1E5E03F4005CCB83 /* pt-sans.bold-italic.ttf in Resources */,
-				A7A3ABC41E5810C400F05EB8 /* LaunchScreen.storyboard in Resources */,
 				A74036011E5E03F4005CCB83 /* pt-sans.narrow-bold.ttf in Resources */,
 				A76DBD5D1E81732500F8B0F3 /* viral_mojo_logo.png in Resources */,
 				A76DBD5B1E816F0900F8B0F3 /* terms_and_conditions.html in Resources */,
@@ -724,14 +720,6 @@
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		A7A3ABC21E5810C400F05EB8 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A7A3ABC31E5810C400F05EB8 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -831,6 +819,7 @@
 			baseConfigurationReference = 3DF943A22ADCE43AB0346C7D /* Pods-Mojo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = Mojo/Mojo.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer: nookesh sirasapalli (6U259K6B7A)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: nookesh sirasapalli (6U259K6B7A)";
@@ -851,6 +840,7 @@
 			baseConfigurationReference = 44505A8A6BEC2B79A0369C43 /* Pods-Mojo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = Mojo/Mojo.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer: nookesh sirasapalli (6U259K6B7A)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: nookesh sirasapalli (6U259K6B7A)";
