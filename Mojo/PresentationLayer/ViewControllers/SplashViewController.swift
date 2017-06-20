@@ -16,21 +16,25 @@ class SplashViewController: UIViewController,ParserDelegate {
     var arrSlogans = [SloganBO]()
     override func viewDidLoad() {
         super.viewDidLoad()
-        UIView.animate(withDuration: 1.0, animations: { 
-            self.imgVwLogo.transform = CGAffineTransform(scaleX: 0.1,y: 0.1)
-
-        }) { (finished) in
-            UIView.animate(withDuration: 1.0, animations: {
-                self.imgVwLogo.transform = CGAffineTransform(scaleX: 1.5,y: 1.5)
+//        UIView.animate(withDuration: 1.0, animations: { 
+//            self.imgVwLogo.transform = CGAffineTransform(scaleX: 1,y: 1)
+//
+//        }) { (finished) in
+            UIView.animate(withDuration: 0.8, animations: {
+                self.imgVwLogo.transform = CGAffineTransform(scaleX: 5,y: 5)
                 
             }) { (finished) in
-                self.imgVwLogo.isHidden = true                
+//                self.imgVwLogo.isHidden = true
+                DispatchQueue.main.async {
+                    self.navigateToNextScreen()
+                }
+
             }
 
-        }
+//        }
 
         // Do any additional setup after loading the view.
-        self.perform(#selector(navigateToNextScreen), with: nil, afterDelay: 2)
+//        self.perform(#selector(navigateToNextScreen), with: nil, afterDelay: 2)
     }
     func randomNumber(range: Range<Int>) -> Int {
         let min = range.lowerBound
