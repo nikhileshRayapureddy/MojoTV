@@ -9,32 +9,26 @@
 import UIKit
 
 class SplashViewController: UIViewController,ParserDelegate {
-    @IBOutlet weak var lblSlogan: UILabel!
     
     @IBOutlet weak var imgVwLogo: UIImageView!
-    @IBOutlet weak var constLblSloganHeight: NSLayoutConstraint!
     var arrSlogans = [SloganBO]()
     override func viewDidLoad() {
         super.viewDidLoad()
-//        UIView.animate(withDuration: 1.0, animations: { 
-//            self.imgVwLogo.transform = CGAffineTransform(scaleX: 1,y: 1)
-//
-//        }) { (finished) in
-            UIView.animate(withDuration: 0.8, animations: {
-                self.imgVwLogo.transform = CGAffineTransform(scaleX: 5,y: 5)
+        UIView.animate(withDuration: 1.0, animations: { 
+            self.imgVwLogo.transform = CGAffineTransform(scaleX: 0.5,y: 0.5)
+
+        }) { (finished) in
+            UIView.animate(withDuration: 1.0, animations: {
+                self.imgVwLogo.transform = CGAffineTransform(scaleX: 1.5,y: 1.5)
                 
             }) { (finished) in
-//                self.imgVwLogo.isHidden = true
-                DispatchQueue.main.async {
-                    self.navigateToNextScreen()
-                }
-
+                self.imgVwLogo.isHidden = true
+                
             }
 
-//        }
+        }
 
-        // Do any additional setup after loading the view.
-//        self.perform(#selector(navigateToNextScreen), with: nil, afterDelay: 2)
+        self.perform(#selector(navigateToNextScreen), with: nil, afterDelay: 2)
     }
     func randomNumber(range: Range<Int>) -> Int {
         let min = range.lowerBound
@@ -45,7 +39,7 @@ class SplashViewController: UIViewController,ParserDelegate {
     func navigateToNextScreen()
     {
         let vc =  UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
-        self.navigationController?.pushViewController(vc, animated: false)
+        self.navigationController?.pushViewController(vc, animated: true)
 
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -78,7 +72,6 @@ class SplashViewController: UIViewController,ParserDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
- 
 }
 extension String {
     func heightWithConstrainedWidth(width: CGFloat, font: UIFont) -> CGFloat {
