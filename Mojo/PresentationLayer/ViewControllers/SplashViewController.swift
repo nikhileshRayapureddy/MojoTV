@@ -11,27 +11,24 @@ import UIKit
 class SplashViewController: UIViewController,ParserDelegate {
     @IBOutlet weak var lblSlogan: UILabel!
     
+    @IBOutlet weak var imgVwLogo: UIImageView!
     @IBOutlet weak var constLblSloganHeight: NSLayoutConstraint!
     var arrSlogans = [SloganBO]()
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        if let slogansData = UserDefaults.standard.object(forKey: "Slogans") as? NSData {
-            arrSlogans = (NSKeyedUnarchiver.unarchiveObject(with: slogansData as Data) as? [SloganBO])!
+        UIView.animate(withDuration: 1.0, animations: { 
+            self.imgVwLogo.transform = CGAffineTransform(scaleX: 0.1,y: 0.1)
+
+        }) { (finished) in
+            UIView.animate(withDuration: 1.0, animations: {
+                self.imgVwLogo.transform = CGAffineTransform(scaleX: 1.5,y: 1.5)
+                
+            }) { (finished) in
+                self.imgVwLogo.isHidden = true                
+            }
+
         }
-        
-        if arrSlogans.count <= 0
-        {
-            self.getAllSlogans()
-        }
-        else
-        {
-            let index = 1 + arc4random() % 6
-            let bo = arrSlogans[Int(index)-1] as SloganBO
-            self.lblSlogan.text = bo.Slogan_Content
-            constLblSloganHeight.constant = bo.Slogan_Content.heightWithConstrainedWidth(width: self.lblSlogan.frame.size.width, font: self.lblSlogan.font)
-            
-        }
+
         // Do any additional setup after loading the view.
         self.perform(#selector(navigateToNextScreen), with: nil, afterDelay: 2)
     }
@@ -44,7 +41,7 @@ class SplashViewController: UIViewController,ParserDelegate {
     func navigateToNextScreen()
     {
         let vc =  UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
-        self.navigationController?.pushViewController(vc, animated: true)
+        self.navigationController?.pushViewController(vc, animated: false)
 
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -77,18 +74,7 @@ class SplashViewController: UIViewController,ParserDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+ 
 }
 extension String {
     func heightWithConstrainedWidth(width: CGFloat, font: UIFont) -> CGFloat {
