@@ -8,13 +8,14 @@
 
 import UIKit
 import youtube_ios_player_helper
-class NewsDetailViewController: BaseViewController,UICollectionViewDelegate,UICollectionViewDataSource,ParserDelegate,YTPlayerViewDelegate {
+class NewsDetailViewController: BaseViewController,UICollectionViewDelegate,UICollectionViewDataSource,ParserDelegate,YTPlayerViewDelegate,UICollectionViewDelegateFlowLayout {
 
     @IBOutlet weak var vwVideoPlayer: YTPlayerView!
     @IBOutlet weak var clVwRelatedNews: UICollectionView!
     var newsId = ""
     var newsBO = NewsBO()
     
+    @IBOutlet weak var constVwLblHeight: NSLayoutConstraint!
     @IBOutlet weak var btnLike: UIButton!
     @IBOutlet weak var lblLikes: UILabel!
     @IBOutlet weak var lblNewName: UILabel!
@@ -55,8 +56,9 @@ class NewsDetailViewController: BaseViewController,UICollectionViewDelegate,UICo
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RelatedNewsCollectionViewCell", for: indexPath) as! RelatedNewsCollectionViewCell
         let bo = newsBO.arrRelatedNews[indexPath.row]
-        let strImage = "http://img.youtube.com/vi/" + bo.News_VideoLink + "/0.jpg"
-        let url = URL(string:strImage)
+//        let strImage = "http://img.youtube.com/vi/" + bo.News_VideoLink + "/0.jpg"
+        let correctedAddress = bo.News_Image.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+        let url = URL(string: correctedAddress!)
         cell.imgVw.kf.setImage(with: url ,
                                    placeholder: UIImage(named: "no-image"),
                                    options: [.transition(ImageTransition.fade(1))],
@@ -64,10 +66,60 @@ class NewsDetailViewController: BaseViewController,UICollectionViewDelegate,UICo
                                     
         },
                                    completionHandler: { image, error, cacheType, imageURL in
+                                    print("error : \(error)")
+                                    if error != nil{
+                                        let strImage = "http://img.youtube.com/vi/" + bo.News_VideoLink + "/0.jpg"
+                                        let correctedAddress = strImage.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+                                        let url = URL(string: correctedAddress!)
+                                        cell.imgVw.kf.setImage(with: url ,
+                                                               placeholder: UIImage(named: "no-image"),
+                                                               options: [.transition(ImageTransition.fade(1))],
+                                                               progressBlock: { receivedSize, totalSize in
+                                                                
+                                        },
+                                                               completionHandler: { image, error, cacheType, imageURL in
+                                        })
+                                        
+                                    }
         })
-        cell.lblName.text = bo.News_Subject
+        cell.lblName.text = bo.News_Subject.uppercased()
+        let df  = DateFormatter()
+        df.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        df.timeZone = TimeZone(identifier: "UTC")
+        let date = df.date(from: bo.News_Date)
+        df.dateFormat = "dd MM yyyy"
+        let now = Date()
+        
+        let formatter = DateComponentsFormatter()
+        formatter.allowedUnits = [.day]
+        formatter.unitsStyle = .short
+        let string = formatter.string(from: date!, to: now)!
+        
+        var dif = string.replacingOccurrences(of: " days", with: "")
+        dif = dif.replacingOccurrences(of: " day", with: "")
+        if Int(dif)! < 1
+        {
+            cell.lblDate.text = "Today"
+        }
+        else if Int(dif)! == 1
+        {
+            cell.lblDate.text = "Yesterday"
+        }
+        else if Int(dif)! <= 7
+        {
+            cell.lblDate.text = dif + " days ago"
+        }
+        else{
+            cell.lblDate.text = bo.News_Date
+        }
         return cell
     }
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: (collectionView.frame.size.width - 15)/2, height: 135)
+    }
+
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         newsBO = newsBO.arrRelatedNews[indexPath.row]
         newsId = newsBO.News_ID
@@ -119,6 +171,8 @@ class NewsDetailViewController: BaseViewController,UICollectionViewDelegate,UICo
                 NotificationCenter.default.addObserver(self, selector: #selector(self.exitedFullScreen(sender:)), name: NSNotification.Name.UIWindowDidBecomeHidden, object: nil)
                 self.clVwRelatedNews.reloadData()
                 self.lblNewName.text = self.newsBO.News_Subject
+                
+                self.constVwLblHeight.constant = self.getHeightforController(view: self.lblNewName, width: self.lblNewName.frame.size.width)
                 self.lblLikes.text = self.newsBO.News_Likes
                 self.checkLike()
             }
@@ -183,5 +237,19 @@ class NewsDetailViewController: BaseViewController,UICollectionViewDelegate,UICo
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+    func getHeightforController(view: AnyObject,width : CGFloat) -> CGFloat {
+        let tempView: UILabel = view as! UILabel
+        let context: NSStringDrawingContext = NSStringDrawingContext()
+        context.minimumScaleFactor = 0.8
+        
+        let size: CGSize = tempView.text!.boundingRect(with: CGSize(width: width, height: 2000), options:NSStringDrawingOptions.usesLineFragmentOrigin, attributes: [NSFontAttributeName: tempView.font], context: context).size as CGSize
+        if size.height >= 43
+        {
+            return size.height
+        }
+        else
+        {
+            return 43
+        }
+    }
 }

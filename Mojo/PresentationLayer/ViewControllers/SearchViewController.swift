@@ -8,16 +8,18 @@
 
 import UIKit
 
-class SearchViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,ParserDelegate,UITextFieldDelegate {
+class SearchViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,ParserDelegate,UITextFieldDelegate {
     var arrNews = [NewsBO]()
     
+    @IBOutlet weak var clVwSerach: UICollectionView!
     @IBOutlet weak var lblNoProducts: UILabel!
     @IBOutlet weak var txtFldSearch: UITextField!
     @IBOutlet weak var btnBack: UIButton!
-    @IBOutlet weak var tblSearch: UITableView!
     var strSearchTxt = ""
     override func viewDidLoad() {
         super.viewDidLoad()
+        let nibName=UINib(nibName: "RelatedNewsCollectionViewCell", bundle:nil)
+        clVwSerach.register(nibName, forCellWithReuseIdentifier: "RelatedNewsCollectionViewCell")
 
         // Do any additional setup after loading the view.
     }
@@ -66,7 +68,7 @@ class SearchViewController: UIViewController,UITableViewDelegate,UITableViewData
             arrNews.removeAll()
             
         }
-        self.tblSearch.reloadData()
+        self.clVwSerach.reloadData()
         return true
         
     }
@@ -97,16 +99,16 @@ class SearchViewController: UIViewController,UITableViewDelegate,UITableViewData
         self.arrNews = object as! [NewsBO]
         if arrNews.count == 0
         {
-            self.tblSearch.isHidden = true
+            self.clVwSerach.isHidden = true
             lblNoProducts.isHidden = false
         }
         else
         {
-            self.tblSearch.isHidden = false
+            self.clVwSerach.isHidden = false
             lblNoProducts.isHidden = true
         }
         
-        self.tblSearch.reloadData()
+        self.clVwSerach.reloadData()
         
         
     }
@@ -118,37 +120,83 @@ class SearchViewController: UIViewController,UITableViewDelegate,UITableViewData
             }
         return true
     }
-
-    //MARK: - TableviewDelegates & Datasources
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return arrNews.count
     }
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell  = tableView.dequeueReusableCell(withIdentifier: "HomeCustomCell", for: indexPath) as! HomeCustomCell
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RelatedNewsCollectionViewCell", for: indexPath) as! RelatedNewsCollectionViewCell
         let bo = arrNews[indexPath.row]
-        let strImage = "http://img.youtube.com/vi/" + bo.News_VideoLink + "/0.jpg"
-        let url = URL(string:strImage)
-        cell.imgVwNews.kf.setImage(with: url ,
-                                   placeholder: UIImage(named: "no-image"),
-                                   options: [.transition(ImageTransition.fade(1))],
-                                   progressBlock: { receivedSize, totalSize in
-                                    
+        //        let strImage = "http://img.youtube.com/vi/" + bo.News_VideoLink + "/0.jpg"
+        let correctedAddress = bo.News_Image.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+        let url = URL(string: correctedAddress!)
+        cell.imgVw.kf.setImage(with: url ,
+                               placeholder: UIImage(named: "no-image"),
+                               options: [.transition(ImageTransition.fade(1))],
+                               progressBlock: { receivedSize, totalSize in
+                                
         },
-                                   completionHandler: { image, error, cacheType, imageURL in
+                               completionHandler: { image, error, cacheType, imageURL in
+                                print("error : \(error)")
+                                if error != nil{
+                                    let strImage = "http://img.youtube.com/vi/" + bo.News_VideoLink + "/0.jpg"
+                                    let correctedAddress = strImage.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+                                    let url = URL(string: correctedAddress!)
+                                    cell.imgVw.kf.setImage(with: url ,
+                                                           placeholder: UIImage(named: "no-image"),
+                                                           options: [.transition(ImageTransition.fade(1))],
+                                                           progressBlock: { receivedSize, totalSize in
+                                                            
+                                    },
+                                                           completionHandler: { image, error, cacheType, imageURL in
+                                    })
                                     
+                                }
         })
-        cell.lblNews.text = bo.News_Subject
+        cell.lblName.text = bo.News_Subject.uppercased()
+        let df  = DateFormatter()
+        df.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        df.timeZone = TimeZone(identifier: "UTC")
+        let date = df.date(from: bo.News_Date)
+        df.dateFormat = "dd MM yyyy"
+        let now = Date()
+        
+        let formatter = DateComponentsFormatter()
+        formatter.allowedUnits = [.day]
+        formatter.unitsStyle = .short
+        let string = formatter.string(from: date!, to: now)!
+        
+        var dif = string.replacingOccurrences(of: " days", with: "")
+        dif = dif.replacingOccurrences(of: " day", with: "")
+        if Int(dif)! < 1
+        {
+            cell.lblDate.text = "Today"
+        }
+        else if Int(dif)! == 1
+        {
+            cell.lblDate.text = "Yesterday"
+        }
+        else if Int(dif)! <= 7
+        {
+            cell.lblDate.text = dif + " days ago"
+        }
+        else{
+            cell.lblDate.text = bo.News_Date
+        }
         return cell
     }
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        self.view.endEditing(true)
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc =  UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "NewsDetailViewController") as! NewsDetailViewController
         vc.newsId = arrNews[indexPath.row].News_ID
         vc.newsBO = arrNews[indexPath.row]
         self.navigationController?.pushViewController(vc, animated: true)
-        
     }
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: (collectionView.frame.size.width - 15)/2, height: 150)
+    }
+    
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

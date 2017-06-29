@@ -9,6 +9,7 @@
 import UIKit
 
 class RelatedNewsCollectionViewCell: UICollectionViewCell {
+    @IBOutlet weak var lblDate: UILabel!
 
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var imgVw: UIImageView!

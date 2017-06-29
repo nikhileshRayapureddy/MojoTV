@@ -90,6 +90,7 @@ class BusinessLayer: BaseBL {
                             {
                                 content.News_Date = News_Date
                             }
+                            
                             arrBanner.append(content)
                         }
                     }
@@ -226,6 +227,19 @@ class BusinessLayer: BaseBL {
                                     {
                                         content.News_Date = News_Date
                                     }
+                                    if let News_Short_Subject = dictData["News_Short_Subject"] as? String
+                                    {
+                                        content.News_Short_Subject = News_Short_Subject
+                                    }
+                                    if let News_Image = dictData["News_Image"] as? String
+                                    {
+                                        content.News_Image = News_Image
+                                    }
+                                    if let isLiked = dictData["isLiked"] as? String
+                                    {
+                                        content.isLiked = isLiked
+                                    }
+
                                     arrNews.append(content)
                                 }
                             }
@@ -334,9 +348,17 @@ class BusinessLayer: BaseBL {
                                     {
                                         content.News_Subject = News_Subject
                                     }
+                                    if let News_Short_Subject = dictData["News_Short_Subject"] as? String
+                                    {
+                                        content.News_Short_Subject = News_Short_Subject
+                                    }
                                     if let News_VideoLink = dictData["News_VideoLink"] as? String
                                     {
                                         content.News_VideoLink = News_VideoLink
+                                    }
+                                    if let News_Image = dictData["News_Image"] as? String
+                                    {
+                                        content.News_Image = News_Image
                                     }
                                     if let News_Likes = dictData["News_Likes"] as? String
                                     {
@@ -353,6 +375,10 @@ class BusinessLayer: BaseBL {
                                     if let News_Date = dictData["News_Date"] as? String
                                     {
                                         content.News_Date = News_Date
+                                    }
+                                    if let isLiked = dictData["isLiked"] as? String
+                                    {
+                                        content.isLiked = isLiked
                                     }
                                     arrNews.append(content)
                                 }
@@ -451,6 +477,19 @@ class BusinessLayer: BaseBL {
                                     {
                                         newsBO.News_Date = News_Date
                                     }
+                                    if let News_Short_Subject = dictData["News_Short_Subject"] as? String
+                                    {
+                                        newsBO.News_Short_Subject = News_Short_Subject
+                                    }
+                                    if let News_Image = dictData["News_Image"] as? String
+                                    {
+                                        newsBO.News_Image = News_Image
+                                    }
+                                    if let isLiked = dictData["isLiked"] as? String
+                                    {
+                                        newsBO.isLiked = isLiked
+                                    }
+
                                 }
                             }
                             if let arrData  = obj.parsedDataDict["relatedNews"] as? [[String:AnyObject]]
@@ -496,6 +535,19 @@ class BusinessLayer: BaseBL {
                                         {
                                             content.News_Date = News_Date
                                         }
+                                        if let News_Short_Subject = dictData["News_Short_Subject"] as? String
+                                        {
+                                            content.News_Short_Subject = News_Short_Subject
+                                        }
+                                        if let News_Image = dictData["News_Image"] as? String
+                                        {
+                                            content.News_Image = News_Image
+                                        }
+                                        if let isLiked = dictData["isLiked"] as? String
+                                        {
+                                            content.isLiked = isLiked
+                                        }
+
                                         newsBO.arrRelatedNews.append(content)
                                     }
                                 }
@@ -577,6 +629,19 @@ class BusinessLayer: BaseBL {
                                     {
                                         content.News_Date = News_Date
                                     }
+                                    if let News_Short_Subject = dictData["News_Short_Subject"] as? String
+                                    {
+                                        content.News_Short_Subject = News_Short_Subject
+                                    }
+                                    if let News_Image = dictData["News_Image"] as? String
+                                    {
+                                        content.News_Image = News_Image
+                                    }
+                                    if let isLiked = dictData["isLiked"] as? String
+                                    {
+                                        content.isLiked = isLiked
+                                    }
+
                                     arrNews.append(content)
                                 }
                             }
@@ -666,6 +731,19 @@ class BusinessLayer: BaseBL {
                                     {
                                         content.News_Date = News_Date
                                     }
+                                    if let News_Short_Subject = dictData["News_Short_Subject"] as? String
+                                    {
+                                        content.News_Short_Subject = News_Short_Subject
+                                    }
+                                    if let News_Image = dictData["News_Image"] as? String
+                                    {
+                                        content.News_Image = News_Image
+                                    }
+                                    if let isLiked = dictData["isLiked"] as? String
+                                    {
+                                        content.isLiked = isLiked
+                                    }
+
                                     arrNews.append(content)
                                 }
                             }
@@ -783,6 +861,68 @@ class BusinessLayer: BaseBL {
                     else
                     {
                         self.callBack.parsingError(SERVER_ERROR, withTag: obj.tag)
+                    }
+                }
+                else
+                {
+                    self.callBack.parsingError(SERVER_ERROR, withTag: obj.tag)
+                }
+                
+            }
+        }
+        
+    }
+    
+    func getAllFlashNews()
+    {
+        let obj : HttpRequest = HttpRequest()
+        obj.tag = NSInteger(ParsingConstant.getAllFlashNews.rawValue)
+        obj.MethodNamee = "GET"
+        obj._serviceURL = developer_API + "get_flashNews.php"
+        obj.params = [:]
+        
+        obj.doGetSOAPResponse {(success : Bool) -> Void in
+            if !success
+            {
+                self.callBack?.parsingError(SERVER_ERROR, withTag: obj.tag)
+            }
+            else
+            {
+                if let isSuccess  = obj.parsedDataDict["success"] as? NSNumber,let message  = obj.parsedDataDict["message"] as? String
+                {
+                    if Bool(isSuccess) == true
+                    {
+                        if let arrData  = obj.parsedDataDict["FlashNews"] as? [[String:AnyObject]]
+                        {
+                            var arrFlashNews = [FlashNewsBO]()
+                            for dictData in arrData
+                            {
+                                let content = FlashNewsBO()
+                                if let FlashNews_ID = dictData["FlashNews_ID"] as? String
+                                {
+                                    content.FlashNews_ID = FlashNews_ID
+                                }
+                                if let FlashNews_Content = dictData["FlashNews_Content"] as? String
+                                {
+                                    content.FlashNews_Content = FlashNews_Content
+                                }
+                                if let FlashNews_Date = dictData["FlashNews_Date"] as? String
+                                {
+                                    content.FlashNews_Date = FlashNews_Date
+                                }
+                                arrFlashNews.append(content)
+                            }
+                            self.callBack?.parsingFinished(arrFlashNews as AnyObject?, withTag: obj.tag)
+                        }
+                        else
+                        {
+                            self.callBack?.parsingError(message, withTag: obj.tag)
+                            
+                        }
+                    }
+                    else
+                    {
+                        self.callBack?.parsingError(message, withTag: obj.tag)
                     }
                 }
                 else

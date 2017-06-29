@@ -8,9 +8,9 @@
 
 import UIKit
 
-class NewsViewController: BaseViewController,ParserDelegate,UITableViewDelegate,UITableViewDataSource {
+class NewsViewController: BaseViewController,ParserDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
 
-    @IBOutlet weak var tblNews: UITableView!
+    @IBOutlet weak var clVwNews: UICollectionView!
     var arrNews = [NewsBO]()
     var catID = ""
     var catName = ""
@@ -26,6 +26,8 @@ class NewsViewController: BaseViewController,ParserDelegate,UITableViewDelegate,
         {
             self.getcategoriesWith(ID: catID)
         }
+        let nibName=UINib(nibName: "RelatedNewsCollectionViewCell", bundle:nil)
+        clVwNews.register(nibName, forCellWithReuseIdentifier: "RelatedNewsCollectionViewCell")
 
         // Do any additional setup after loading the view.
     }
@@ -34,35 +36,92 @@ class NewsViewController: BaseViewController,ParserDelegate,UITableViewDelegate,
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return arrNews.count
     }
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell  = tableView.dequeueReusableCell(withIdentifier: "HomeCustomCell", for: indexPath) as! HomeCustomCell
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RelatedNewsCollectionViewCell", for: indexPath) as! RelatedNewsCollectionViewCell
         let bo = arrNews[indexPath.row]
-        let strImage = "http://img.youtube.com/vi/" + bo.News_VideoLink + "/0.jpg"
-        let url = URL(string:strImage)
-        cell.imgVwNews.kf.setImage(with: url ,
+        //        let strImage = "http://img.youtube.com/vi/" + bo.News_VideoLink + "/0.jpg"
+        let correctedAddress = bo.News_Image.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+        let url = URL(string: correctedAddress!)
+        cell.imgVw.kf.setImage(with: url ,
                                    placeholder: UIImage(named: "no-image"),
                                    options: [.transition(ImageTransition.fade(1))],
                                    progressBlock: { receivedSize, totalSize in
                                     
-        },
+            },
                                    completionHandler: { image, error, cacheType, imageURL in
-                                    
+                                    print("error : \(error)")
+                                    if error != nil{
+                                        let strImage = "http://img.youtube.com/vi/" + bo.News_VideoLink + "/0.jpg"
+                                        let correctedAddress = strImage.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+                                        let url = URL(string: correctedAddress!)
+
+                                        cell.imgVw.kf.setImage(with: url ,
+                                                               placeholder: UIImage(named: "no-image"),
+                                                               options: [.transition(ImageTransition.fade(1))],
+                                                               progressBlock: { receivedSize, totalSize in
+                                                                
+                                        },
+                                                               completionHandler: { image, error, cacheType, imageURL in
+                                        })
+                                        
+                                    }
         })
-        cell.lblNews.text = bo.News_Subject
+
+        if bo.News_Short_Subject == ""
+        {
+            cell.lblName.text = bo.News_Subject.uppercased()
+        }
+        else
+        {
+            cell.lblName.text = bo.News_Short_Subject.uppercased()
+        }
+        
+        let df  = DateFormatter()
+        df.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        df.timeZone = TimeZone(identifier: "UTC")
+        let date = df.date(from: bo.News_Date)
+        df.dateFormat = "dd MM yyyy"
+        let now = Date()
+        
+        let formatter = DateComponentsFormatter()
+        formatter.allowedUnits = [.day]
+        formatter.unitsStyle = .short
+        let string = formatter.string(from: date!, to: now)!
+
+        var dif = string.replacingOccurrences(of: " days", with: "")
+        dif = dif.replacingOccurrences(of: " day", with: "")
+       if Int(dif)! < 1
+        {
+            cell.lblDate.text = "Today"
+        }
+        else if Int(dif)! == 1
+        {
+            cell.lblDate.text = "Yesterday"
+        }
+        else if Int(dif)! <= 7
+        {
+            cell.lblDate.text = dif + " days ago"
+        }
+        else{
+            cell.lblDate.text = bo.News_Date
+        }
         return cell
     }
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc =  UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "NewsDetailViewController") as! NewsDetailViewController
         vc.newsId = arrNews[indexPath.row].News_ID
         vc.newsBO = arrNews[indexPath.row]
         self.navigationController?.pushViewController(vc, animated: true)
-        
-
     }
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: (collectionView.frame.size.width - 15)/2, height: 150)
+    }
+
     func getcategoriesWith(ID : String)
     {
         app_delegate.showLoader(message: "")
@@ -92,12 +151,12 @@ class NewsViewController: BaseViewController,ParserDelegate,UITableViewDelegate,
                     self.arrNews = object as! [NewsBO]
                 if self.arrNews.count > 0
                 {
-                    self.tblNews.isHidden = false
-                    self.tblNews.reloadData()
+                    self.clVwNews.isHidden = false
+                    self.clVwNews.reloadData()
                 }
                 else
                 {
-                    self.tblNews.isHidden = true
+                    self.clVwNews.isHidden = true
                 }
             }
         }
@@ -109,12 +168,12 @@ class NewsViewController: BaseViewController,ParserDelegate,UITableViewDelegate,
                 self.arrNews = object as! [NewsBO]
                 if self.arrNews.count > 0
                 {
-                    self.tblNews.isHidden = false
-                    self.tblNews.reloadData()
+                    self.clVwNews.isHidden = false
+                    self.clVwNews.reloadData()
                 }
                 else
                 {
-                    self.tblNews.isHidden = true
+                    self.clVwNews.isHidden = true
                 }
             }
         }

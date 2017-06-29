@@ -56,7 +56,7 @@ class BaseViewController: UIViewController {
             logoImgView.setImage(UIImage(named:"Logo_NavBar"), for: .normal)
             logoImgView.setImage(UIImage(named:"Logo_NavBar"), for: .selected)
             logoImgView.setImage(UIImage(named:"Logo_NavBar"), for: .highlighted)
-            logoImgView.titleLabel?.font = UIFont (name: "pt-sans.bold", size: 20)
+            logoImgView.titleLabel?.font = UIFont (name: "Helvetica-Bold", size: 20)
             leftBarButtonItem1 = UIBarButtonItem(customView: logoImgView)
 
         }
@@ -66,7 +66,7 @@ class BaseViewController: UIViewController {
             logoImgView.frame =  CGRect(x: 0, y: 0, width: 300, height: 40)
             logoImgView.setTitle(strTitle, for: .normal)
             logoImgView.setTitleColor(UIColor.white, for: .normal)
-            logoImgView.titleLabel?.font = UIFont (name: "pt-sans.bold", size: 20)
+            logoImgView.titleLabel?.font = UIFont (name: "Helvetica-Bold", size: 20)
             logoImgView.contentHorizontalAlignment = .left
             leftBarButtonItem1 = UIBarButtonItem(customView: logoImgView)
 
@@ -90,7 +90,7 @@ class BaseViewController: UIViewController {
         logoImgView.setImage(UIImage(named:"Logo_NavBar"), for: .selected)
         logoImgView.setImage(UIImage(named:"Logo_NavBar"), for: .highlighted)
         logoImgView.contentMode = .left
-        logoImgView.titleLabel?.font = UIFont (name: "pt-sans.bold", size: 20)
+        logoImgView.titleLabel?.font = UIFont (name: "Helvetica-Bold", size: 20)
 
         
         let menuButton = UIButton(type: UIButtonType.custom)
